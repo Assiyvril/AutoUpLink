@@ -110,6 +110,10 @@ func executeCommand(path string, execResult *chan bool) {
 //}
 
 func main() {
+	fmt.Println("*****************************************************************************************************************")
+	fmt.Println("*****************************************************************************************************************")
+	fmt.Println("*****************************************************************************************************************")
+	fmt.Println("*****************！！！！！ --- 使用多开程序之前，必须关闭已经运行的微信 --- ！！！！！************************")
 	path := func() string {
 		for {
 			checkPath := readInputPath()
@@ -147,9 +151,12 @@ func main() {
 				if result {
 					successCount++
 					fmt.Println("成功 +1, ", successCount)
+					close(channel)
+
 				} else {
 					failCount++
 					fmt.Println("失败 +1, ", failCount)
+					close(channel)
 				}
 			default:
 				//fmt.Println("无论如何,跳过")
